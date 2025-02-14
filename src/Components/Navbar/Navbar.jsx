@@ -1,8 +1,10 @@
-import { list } from "postcss";
+import { useState } from "react";
 import Link from "../Link/Link";
+import { AiOutlineMenu,AiOutlineClose } from "react-icons/ai";
 
 
 const Navbar = () => {
+    const [open,setOpen]= useState(false)
 
     const routes = [
         { id: 1, path: "/", name: "Home" },
@@ -16,6 +18,14 @@ const Navbar = () => {
       
     return (
       <nav>
+           <div className="text-2xl md:hidden" onClick={()=>setOpen(!open)}>
+            {
+                open === true ? 
+                <AiOutlineClose></AiOutlineClose> 
+                : <AiOutlineMenu className=""></AiOutlineMenu>
+            }
+          
+           </div>
            <ul className="md:flex">
            {
             routes.map(route => <Link key={route.id} route={route}></Link>)
